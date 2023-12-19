@@ -1,4 +1,10 @@
 package com.example.legaltrackerapi.repositories;
 
-public interface TrackerRepository {
+import com.example.legaltrackerapi.entities.TrackerModel;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface TrackerRepository extends JpaRepository<TrackerModel, Long> {
+
 }

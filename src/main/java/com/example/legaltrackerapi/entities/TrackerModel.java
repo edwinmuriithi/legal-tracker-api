@@ -43,10 +43,4 @@ public class TrackerModel {
     private String arresting_authority;
     private String prosecutor;
 
-
-
-
-
-
-
 }
