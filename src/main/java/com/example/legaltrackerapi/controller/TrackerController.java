@@ -39,29 +39,29 @@ public class TrackerController {
 
     @GetMapping("/{courtFile}")
     public ResponseEntity<TrackerModel> findByCourtFile(@PathVariable String courtFile) {
-        Optional<TrackerModel> tracker = trackerService.findByCourtFile(courtFile);
+        Optional<TrackerModel> tracker = trackerService.findByCourtFileNo(courtFile);
         return tracker.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-    @PutMapping("/{courtFile}")
-    public ResponseEntity<TrackerModel> updateTracker(@PathVariable String courtFile, @RequestBody TrackerModel updatedTrackerModel) {
-        try {
-            TrackerModel updatedTracker = trackerService.updateTrackerByCourtFile(updatedTrackerModel,courtFile);
-            return new ResponseEntity<>(updatedTracker, HttpStatus.OK);
-        } catch (RuntimeException e) {
-            // Handle the case where the tracker is not found or there is an error
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-    @DeleteMapping("/{courtFile}")
-    public ResponseEntity<Void> deleteTracker(@PathVariable String courtFile) {
-        try {
-            trackerService.deleteTracker(courtFile);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (RuntimeException e) {
-            // Handle the case where the tracker is not found or there is an error
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
+//    @PutMapping("/{courtFile}")
+//    public ResponseEntity<TrackerModel> updateTracker(@PathVariable String courtFile, @RequestBody TrackerModel updatedTrackerModel) {
+//        try {
+//            TrackerModel updatedTracker = trackerService.updateTrackerByCourtFile(updatedTrackerModel,courtFile);
+//            return new ResponseEntity<>(updatedTracker, HttpStatus.OK);
+//        } catch (RuntimeException e) {
+//            // Handle the case where the tracker is not found or there is an error
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
+//    @DeleteMapping("/{courtFile}")
+//    public ResponseEntity<Void> deleteTracker(@PathVariable String courtFile) {
+//        try {
+//            trackerService.deleteTracker(courtFile);
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        } catch (RuntimeException e) {
+//            // Handle the case where the tracker is not found or there is an error
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
 
 }

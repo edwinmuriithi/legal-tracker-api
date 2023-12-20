@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface TrackerRepository extends JpaRepository<TrackerModel, Long> {
 
-    Optional<TrackerModel> findByCourtFile(String courtFile);
+    Optional<TrackerModel> findByCourtFileNo(String court_file_no);
 }

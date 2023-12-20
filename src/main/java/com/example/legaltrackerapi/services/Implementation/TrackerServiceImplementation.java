@@ -14,8 +14,7 @@ import java.util.Optional;
 @Slf4j
 public class TrackerServiceImplementation implements TrackerService {
 
-    @Autowired
-    private TrackerRepository trackerRepository;
+    private final TrackerRepository trackerRepository;
 
     public TrackerServiceImplementation(TrackerRepository trackerRepository) {
         this.trackerRepository = trackerRepository;
@@ -25,17 +24,17 @@ public class TrackerServiceImplementation implements TrackerService {
     public TrackerModel createTracker(TrackerModel trackerModel) {
         try {
             // Populate the TrackerModel with the necessary data
-            trackerModel.setCourt_file_no(trackerModel.getCourt_file_no());
-            trackerModel.setName_of_accused(trackerModel.getName_of_accused());
+            trackerModel.setCourtFileNo(trackerModel.getCourtFileNo());
+            trackerModel.setNameOfAccused(trackerModel.getNameOfAccused());
             trackerModel.setNationality(trackerModel.getNationality());
             trackerModel.setGender(trackerModel.getGender());
-            trackerModel.setId_passport_no(trackerModel.getId_passport_no());
+            trackerModel.setIdPassportNo(trackerModel.getIdPassportNo());
             trackerModel.setMagistrate(trackerModel.getMagistrate());
-            trackerModel.setDate_of_plea(trackerModel.getDate_of_plea());
+            trackerModel.setDateOfPlea(trackerModel.getDateOfPlea());
             trackerModel.setPlea(trackerModel.getPlea());
-            trackerModel.setBond_terms(trackerModel.getBond_terms());
-            trackerModel.setBond_surety_name(trackerModel.getBond_surety_name());
-            trackerModel.setSurety_details(trackerModel.getSurety_details());
+            trackerModel.setBondTerms(trackerModel.getBondTerms());
+            trackerModel.setBondSuretyName(trackerModel.getBondSuretyName());
+            trackerModel.setSuretyDetails(trackerModel.getSuretyDetails());
             trackerModel.setCharge1(trackerModel.getCharge1());
             trackerModel.setCharge2(trackerModel.getCharge2());
             trackerModel.setCharge3(trackerModel.getCharge3());
@@ -44,18 +43,18 @@ public class TrackerServiceImplementation implements TrackerService {
             trackerModel.setSpecies(trackerModel.getSpecies());
             trackerModel.setExhibit(trackerModel.getExhibit());
             trackerModel.setWeight(trackerModel.getWeight());
-            trackerModel.setJudgement_date(trackerModel.getJudgement_date());
-            trackerModel.setJudgement_outcome(trackerModel.getJudgement_outcome());
+            trackerModel.setJudgementDate(trackerModel.getJudgementDate());
+            trackerModel.setJudgementOutcome(trackerModel.getJudgementOutcome());
             trackerModel.setSentencing(trackerModel.getSentencing());
-            trackerModel.setCase_status(trackerModel.getCase_status());
-            trackerModel.setLocation_of_arrest(trackerModel.getLocation_of_arrest());
-            trackerModel.setArresting_authority(trackerModel.getArresting_authority());
+            trackerModel.setCaseStatus(trackerModel.getCaseStatus());
+            trackerModel.setLocationOfArrest(trackerModel.getLocationOfArrest());
+            trackerModel.setArrestingAuthority(trackerModel.getArrestingAuthority());
             trackerModel.setProsecutor(trackerModel.getProsecutor());
 
 
             // Save the populated tracker model
             TrackerModel savedTracker = trackerRepository.save(trackerModel);
-            log.info("Tracker created successfully with Court File Number: {}", savedTracker.getCourt_file_no());
+            log.info("Tracker created successfully with Court File Number: {}", savedTracker.getCourtFileNo());
             return savedTracker;
         } catch (Exception e) {
             log.error("Error creating tracker: {}", e.getMessage());
@@ -69,32 +68,33 @@ public class TrackerServiceImplementation implements TrackerService {
         return trackerRepository.findAll();
     }
 
+
     @Override
-    public Optional<TrackerModel> findByCourtFile(String courtFile) {
-        return trackerRepository.findByCourtFile(courtFile);
+    public Optional<TrackerModel> findByCourtFileNo(String courtFileNo) {
+        return trackerRepository.findByCourtFileNo(courtFileNo);
+
     }
 
     @Override
     public TrackerModel updateTrackerByCourtFile(TrackerModel updatedTrackerModel, String courtFile) {
         try {
-            // Retrieve the existing tracker from the database
-            Optional<TrackerModel> existingTrackerOptional = trackerRepository.findByCourtFile(courtFile);
+//             Retrieve the existing tracker from the database
+            Optional<TrackerModel> existingTrackerOptional = trackerRepository.findByCourtFileNo(courtFile);
 
             if (existingTrackerOptional.isPresent()) {
                 TrackerModel existingTracker = existingTrackerOptional.get();
 
                 // Update fields with the new data
-                existingTracker.setCourt_file_no(existingTracker.getCourt_file_no());
-                existingTracker.setName_of_accused(existingTracker.getName_of_accused());
+                existingTracker.setNameOfAccused(existingTracker.getNameOfAccused());
                 existingTracker.setNationality(existingTracker.getNationality());
                 existingTracker.setGender(existingTracker.getGender());
-                existingTracker.setId_passport_no(existingTracker.getId_passport_no());
+                existingTracker.setIdPassportNo(existingTracker.getIdPassportNo());
                 existingTracker.setMagistrate(existingTracker.getMagistrate());
-                existingTracker.setDate_of_plea(existingTracker.getDate_of_plea());
+                existingTracker.setDateOfPlea(existingTracker.getDateOfPlea());
                 existingTracker.setPlea(existingTracker.getPlea());
-                existingTracker.setBond_terms(existingTracker.getBond_terms());
-                existingTracker.setBond_surety_name(existingTracker.getBond_surety_name());
-                existingTracker.setSurety_details(existingTracker.getSurety_details());
+                existingTracker.setBondTerms(existingTracker.getBondTerms());
+                existingTracker.setBondSuretyName(existingTracker.getBondSuretyName());
+                existingTracker.setSuretyDetails(existingTracker.getSuretyDetails());
                 existingTracker.setCharge1(existingTracker.getCharge1());
                 existingTracker.setCharge2(existingTracker.getCharge2());
                 existingTracker.setCharge3(existingTracker.getCharge3());
@@ -103,18 +103,17 @@ public class TrackerServiceImplementation implements TrackerService {
                 existingTracker.setSpecies(existingTracker.getSpecies());
                 existingTracker.setExhibit(existingTracker.getExhibit());
                 existingTracker.setWeight(existingTracker.getWeight());
-                existingTracker.setJudgement_date(existingTracker.getJudgement_date());
-                existingTracker.setJudgement_outcome(existingTracker.getJudgement_outcome());
+                existingTracker.setJudgementDate(existingTracker.getJudgementDate());
+                existingTracker.setJudgementOutcome(existingTracker.getJudgementOutcome());
                 existingTracker.setSentencing(existingTracker.getSentencing());
-                existingTracker.setCase_status(existingTracker.getCase_status());
-                existingTracker.setLocation_of_arrest(existingTracker.getLocation_of_arrest());
-                existingTracker.setArresting_authority(existingTracker.getArresting_authority());
+                existingTracker.setCaseStatus(existingTracker.getCaseStatus());
+                existingTracker.setLocationOfArrest(existingTracker.getLocationOfArrest());
+                existingTracker.setArrestingAuthority(existingTracker.getArrestingAuthority());
                 existingTracker.setProsecutor(existingTracker.getProsecutor());
-
 
                 // Save the updated tracker model
                 TrackerModel updatedTracker = trackerRepository.save(existingTracker);
-                log.info("Tracker updated successfully with Court File Number: {}", updatedTracker.getCourt_file_no());
+                log.info("Tracker updated successfully with Court File Number: {}", updatedTracker.getCourtFileNo());
                 return updatedTracker;
             } else {
                 log.error("Tracker not found with Court File Number: {}", courtFile);
@@ -130,7 +129,7 @@ public class TrackerServiceImplementation implements TrackerService {
     public void deleteTracker(String courtFile) {
         try {
             // Retrieve the existing tracker from the database
-            Optional<TrackerModel> existingTrackerOptional = trackerRepository.findByCourtFile(courtFile);
+            Optional<TrackerModel> existingTrackerOptional = trackerRepository.findByCourtFileNo(courtFile);
 
             if (existingTrackerOptional.isPresent()) {
                 TrackerModel existingTracker = existingTrackerOptional.get();

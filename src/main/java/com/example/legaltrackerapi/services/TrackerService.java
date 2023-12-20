@@ -11,7 +11,7 @@ public interface TrackerService {
 
     TrackerModel createTracker(TrackerModel trackerModel);
     List<TrackerModel> viewAllCases();
-    Optional<TrackerModel> findByCourtFile(String courtFile);
+    Optional<TrackerModel> findByCourtFileNo(String courtFileNo);
     TrackerModel updateTrackerByCourtFile(TrackerModel updatedTrackerModel , String courtFile);
 
     void deleteTracker(String courtFile);

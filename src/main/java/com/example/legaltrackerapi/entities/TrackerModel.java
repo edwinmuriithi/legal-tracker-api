@@ -16,17 +16,18 @@ public class TrackerModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String court_file_no;
-    private String name_of_accused;
+    @Column(length = 100, nullable = false, unique = true)
+    private String courtFileNo;
+    private String nameOfAccused;
     private String nationality;
     private String gender;
-    private String id_passport_no;
+    private String idPassportNo;
     private String magistrate;
-    private Date date_of_plea;
+    private Date dateOfPlea;
     private String plea;
-    private String bond_terms;
-    private String bond_surety_name;
-    private String surety_details;
+    private String bondTerms;
+    private String bondSuretyName;
+    private String suretyDetails;
     private String charge1;
     private String charge2;
     private String charge3;
@@ -35,12 +36,12 @@ public class TrackerModel {
     private String species;
     private String exhibit;
     private String weight;
-    private Date judgement_date;
-    private String judgement_outcome;
+    private Date judgementDate;
+    private String judgementOutcome;
     private String sentencing;
-    private String case_status;
-    private String location_of_arrest;
-    private String arresting_authority;
+    private String caseStatus;
+    private String locationOfArrest;
+    private String arrestingAuthority;
     private String prosecutor;
 
 }
