@@ -53,5 +53,15 @@ public class TrackerController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    @DeleteMapping("/{courtFile}")
+    public ResponseEntity<Void> deleteTracker(@PathVariable String courtFile) {
+        try {
+            trackerService.deleteTracker(courtFile);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch (RuntimeException e) {
+            // Handle the case where the tracker is not found or there is an error
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
 }

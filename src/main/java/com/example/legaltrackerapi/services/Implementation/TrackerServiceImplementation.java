@@ -127,4 +127,25 @@ public class TrackerServiceImplementation implements TrackerService {
         }
     }
 
+    public void deleteTracker(String courtFile) {
+        try {
+            // Retrieve the existing tracker from the database
+            Optional<TrackerModel> existingTrackerOptional = trackerRepository.findByCourtFile(courtFile);
+
+            if (existingTrackerOptional.isPresent()) {
+                TrackerModel existingTracker = existingTrackerOptional.get();
+
+                // Delete the tracker from the database
+                trackerRepository.delete(existingTracker);
+                log.info("Tracker deleted successfully with Court File Number: {}", courtFile);
+            } else {
+                log.error("Tracker not found with Court File Number: {}", courtFile);
+                throw new RuntimeException("Tracker not found");
+            }
+        } catch (Exception e) {
+            log.error("Error deleting tracker: {}", e.getMessage());
+            // You may handle exceptions based on your application requirements
+            throw new RuntimeException("Error deleting tracker", e);
+        }
+    }
 }

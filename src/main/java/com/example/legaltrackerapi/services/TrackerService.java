@@ -14,4 +14,6 @@ public interface TrackerService {
     Optional<TrackerModel> findByCourtFile(String courtFile);
     TrackerModel updateTrackerByCourtFile(TrackerModel updatedTrackerModel , String courtFile);
 
+    void deleteTracker(String courtFile);
+
 }
