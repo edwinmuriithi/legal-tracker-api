@@ -78,38 +78,38 @@ public class TrackerServiceImplementation implements TrackerService {
     @Override
     public TrackerModel updateTrackerByCourtFile(TrackerModel updatedTrackerModel, String courtFile) {
         try {
-//             Retrieve the existing tracker from the database
+            // Retrieve the existing tracker from the database
             Optional<TrackerModel> existingTrackerOptional = trackerRepository.findByCourtFileNo(courtFile);
 
             if (existingTrackerOptional.isPresent()) {
                 TrackerModel existingTracker = existingTrackerOptional.get();
 
-                // Update fields with the new data
-                existingTracker.setNameOfAccused(existingTracker.getNameOfAccused());
-                existingTracker.setNationality(existingTracker.getNationality());
-                existingTracker.setGender(existingTracker.getGender());
-                existingTracker.setIdPassportNo(existingTracker.getIdPassportNo());
-                existingTracker.setMagistrate(existingTracker.getMagistrate());
-                existingTracker.setDateOfPlea(existingTracker.getDateOfPlea());
-                existingTracker.setPlea(existingTracker.getPlea());
-                existingTracker.setBondTerms(existingTracker.getBondTerms());
-                existingTracker.setBondSuretyName(existingTracker.getBondSuretyName());
-                existingTracker.setSuretyDetails(existingTracker.getSuretyDetails());
-                existingTracker.setCharge1(existingTracker.getCharge1());
-                existingTracker.setCharge2(existingTracker.getCharge2());
-                existingTracker.setCharge3(existingTracker.getCharge3());
-                existingTracker.setCharge4(existingTracker.getCharge4());
-                existingTracker.setCharge5(existingTracker.getCharge5());
-                existingTracker.setSpecies(existingTracker.getSpecies());
-                existingTracker.setExhibit(existingTracker.getExhibit());
-                existingTracker.setWeight(existingTracker.getWeight());
-                existingTracker.setJudgementDate(existingTracker.getJudgementDate());
-                existingTracker.setJudgementOutcome(existingTracker.getJudgementOutcome());
-                existingTracker.setSentencing(existingTracker.getSentencing());
-                existingTracker.setCaseStatus(existingTracker.getCaseStatus());
-                existingTracker.setLocationOfArrest(existingTracker.getLocationOfArrest());
-                existingTracker.setArrestingAuthority(existingTracker.getArrestingAuthority());
-                existingTracker.setProsecutor(existingTracker.getProsecutor());
+                // Update fields with the new data from updatedTrackerModel
+                existingTracker.setNameOfAccused(updatedTrackerModel.getNameOfAccused());
+                existingTracker.setNationality(updatedTrackerModel.getNationality());
+                existingTracker.setGender(updatedTrackerModel.getGender());
+                existingTracker.setIdPassportNo(updatedTrackerModel.getIdPassportNo());
+                existingTracker.setMagistrate(updatedTrackerModel.getMagistrate());
+                existingTracker.setDateOfPlea(updatedTrackerModel.getDateOfPlea());
+                existingTracker.setPlea(updatedTrackerModel.getPlea());
+                existingTracker.setBondTerms(updatedTrackerModel.getBondTerms());
+                existingTracker.setBondSuretyName(updatedTrackerModel.getBondSuretyName());
+                existingTracker.setSuretyDetails(updatedTrackerModel.getSuretyDetails());
+                existingTracker.setCharge1(updatedTrackerModel.getCharge1());
+                existingTracker.setCharge2(updatedTrackerModel.getCharge2());
+                existingTracker.setCharge3(updatedTrackerModel.getCharge3());
+                existingTracker.setCharge4(updatedTrackerModel.getCharge4());
+                existingTracker.setCharge5(updatedTrackerModel.getCharge5());
+                existingTracker.setSpecies(updatedTrackerModel.getSpecies());
+                existingTracker.setExhibit(updatedTrackerModel.getExhibit());
+                existingTracker.setWeight(updatedTrackerModel.getWeight());
+                existingTracker.setJudgementDate(updatedTrackerModel.getJudgementDate());
+                existingTracker.setJudgementOutcome(updatedTrackerModel.getJudgementOutcome());
+                existingTracker.setSentencing(updatedTrackerModel.getSentencing());
+                existingTracker.setCaseStatus(updatedTrackerModel.getCaseStatus());
+                existingTracker.setLocationOfArrest(updatedTrackerModel.getLocationOfArrest());
+                existingTracker.setArrestingAuthority(updatedTrackerModel.getArrestingAuthority());
+                existingTracker.setProsecutor(updatedTrackerModel.getProsecutor());
 
                 // Save the updated tracker model
                 TrackerModel updatedTracker = trackerRepository.save(existingTracker);
