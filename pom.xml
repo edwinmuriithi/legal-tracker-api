@@ -58,6 +58,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>legal-tracker-portal</finalName>
 	</build>
 
 </project>
