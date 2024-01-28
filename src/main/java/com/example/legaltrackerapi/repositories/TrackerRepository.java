@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface TrackerRepository extends JpaRepository<TrackerModel, Long> {
 
     Optional<TrackerModel> findByCourtFileNo(String court_file_no);
+    Optional<TrackerModel> findBySpecies(String species);
 }

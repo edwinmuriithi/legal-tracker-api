@@ -1,0 +1,30 @@
+version: "3"
+services:
+  mysqltrackerdb:
+    image: mysql
+    container_name: mysqltrackerdb
+    networks:
+      - springmysql-net
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=legal_tracker_db
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
+  legal-tracker:
+    image: muriithike/legal-tracker-portal:v1.0.0
+    ports:
+      - "8081:8007"
+    networks:
+      - springmysql-net
+    environment:
+      - DATASOURCE_HOST=mysqldb:3306
+      - DATASOURCE_USER=root
+      - DATASOURCE_PASSWORD=root
+      - DATASOURCE_DB=legal_tracker_db
+    depends_on:
+      mysqltrackerdb:
+        condition: service_healthy
+networks:
+   springmysql-net:

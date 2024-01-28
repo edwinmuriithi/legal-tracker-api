@@ -126,6 +126,11 @@ public class TrackerServiceImplementation implements TrackerService {
         }
     }
 
+    @Override
+    public Optional<TrackerModel> findBySpecies(String species) {
+        return trackerRepository.findBySpecies(species);
+    }
+
     public void deleteTracker(String courtFile) {
         try {
             // Retrieve the existing tracker from the database
