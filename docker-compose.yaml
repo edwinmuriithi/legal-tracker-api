@@ -1,8 +1,8 @@
 version: "3"
 services:
-  mysqldb:
+  mysqltrackerdb:
     image: mysql
-    container_name: mysqldb
+    container_name: mysqltrackerdb
     networks:
       - springmysql-net
     environment:
@@ -24,7 +24,7 @@ services:
       - DATASOURCE_PASSWORD=root
       - DATASOURCE_DB=legal_tracker_db
     depends_on:
-      mysqldb:
+      mysqltrackerdb:
         condition: service_healthy
 networks:
    springmysql-net:
