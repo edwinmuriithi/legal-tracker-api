@@ -13,7 +13,7 @@ public interface TrackerService {
     List<TrackerModel> viewAllCases();
     Optional<TrackerModel> findByCourtFileNo(String courtFileNo);
     TrackerModel updateTrackerByCourtFile(TrackerModel updatedTrackerModel , String courtFile);
-
+    Optional<TrackerModel> findBySpecies(String species);
     void deleteTracker(String courtFile);
 
 }

@@ -53,6 +53,13 @@ public class TrackerController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    @GetMapping("/{species}")
+    public ResponseEntity<TrackerModel> findBySpecies(@PathVariable String species){
+        Optional<TrackerModel> tracker = trackerService.findBySpecies(species);
+        return tracker.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
     @DeleteMapping("/{courtFile}")
     public ResponseEntity<Void> deleteTracker(@PathVariable String courtFile) {
         try {
